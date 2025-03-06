@@ -83,6 +83,35 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+	// filter/remove elements of SLL based on Comp 
+	// Comp uses operator() & takes in an int which will return bool on if remove
+	// deallocate the removed nodes (use delete)
+	// ADD IN FUNCTOR PART
+
+	//head->next = temp; 
+	// keep track of the next pointer
+
+	if (head == nullptr){
+		return nullptr; 
+		// this is base case 
+	} 
+
+	head->next = llfilter(head->next, pred);
+	// this is recursive call 
+
+	// check if Comp returns true or false & then remove 
+	if (pred(head->val)){
+		// remove the node if pred is true 
+		Node* temp = head->next; 
+		delete head; 
+		return temp; 
+		// returns the next 
+	}
+	return head; 
+	// returns the head (this is if node is not removed)
+
+	//llfilter(head, pred);
+	// this is recursive call 
 
 
 }
